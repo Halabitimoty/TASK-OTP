@@ -8,11 +8,11 @@ const { sixdigitcode } = require("../../utilities/authentication");
 
 const forgetpassword = async (req, res) => {
   try {
-    const { email, username } = req.body;
+    const { email } = req.body;
 
-    await forgetpasswordval.validateAsync({ email, username });
+    await forgetpasswordval.validateAsync({ email });
 
-    const user = await usercollection.findOne({ username }).maxTimeMS(20000);
+    const user = await usercollection.findOne({ email }).maxTimeMS(20000);
 
     if (!user) {
       return res.status(404).send({
