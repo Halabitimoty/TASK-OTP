@@ -12,7 +12,7 @@ const register = async (req, res) => {
     await registerval.validateAsync({ email, username, phonenumber, password });
 
     const isUserPresent = await usercollection
-      .findOne({ username })
+      .findOne({ email })
       .maxTimeMS(20000);
 
     if (isUserPresent) {
