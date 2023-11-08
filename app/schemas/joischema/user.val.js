@@ -14,7 +14,6 @@ const registerval = Joi.object({
 
 const forgetpasswordval = Joi.object({
   email: Joi.string().email().min(3).max(50).required(),
-  username: Joi.string().required(),
 });
 
 const resetpasswordval = Joi.object({
