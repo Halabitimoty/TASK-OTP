@@ -7,9 +7,9 @@ const { registerval } = require("../../schemas/joischema/user.val");
 
 const register = async (req, res) => {
   try {
-    const { username, phonenumber, password } = req.body;
+    const { email, username, phonenumber, password } = req.body;
 
-    await registerval.validateAsync({ username, phonenumber, password });
+    await registerval.validateAsync({ email, username, phonenumber, password });
 
     const isUserPresent = await usercollection
       .findOne({ username })
@@ -27,6 +27,7 @@ const register = async (req, res) => {
     const hashedpassword = bcrypt.hashSync(password, salt);
 
     await usercollection.create({
+      email,
       username,
       phonenumber,
       password: hashedpassword,

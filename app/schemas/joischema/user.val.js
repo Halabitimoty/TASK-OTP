@@ -6,6 +6,7 @@ const loginval = Joi.object({
 });
 
 const registerval = Joi.object({
+  email: Joi.string().email().min(3).max(50).required(),
   username: Joi.string().required(),
   phonenumber: Joi.number().required(),
   password: Joi.string().min(6).max(40).required(),
